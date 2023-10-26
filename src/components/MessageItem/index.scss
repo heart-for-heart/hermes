@@ -1,0 +1,51 @@
+.message-item {
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 16px;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  margin-top: 16px;
+  max-width: 60vw;
+
+  .text,
+  .image,
+  .video {
+    max-width: 60vw;
+  }
+
+  .link-card {
+    width: 60vw;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+
+    .info {
+      width: calc(60vw - 220px);
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        font-size: 1.2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .subtitle {
+        font-size: 0.8rem;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        color: #666;
+        overflow: hidden;
+      }
+    }
+
+    .image {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 export default defineAppConfig({
   pages: [
     'pages/index/index',
+    'pages/ChatRoom/index',
   ],
   window: {
     backgroundTextStyle: 'light',

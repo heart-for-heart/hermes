@@ -1,0 +1,43 @@
+.message {
+  display: flex;
+  margin-bottom: 32px;
+
+  .avatar-wrapper {
+    .avatar {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    .name {
+      line-height: 2rem;
+    }
+
+    .message-list {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &.right {
+    display: flex;
+    flex-direction: row-reverse;
+
+    .container {
+      .name {
+        text-align: right;
+      }
+
+      .message-list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
+  }
+}
