@@ -1,7 +1,11 @@
 import { PropsWithChildren } from "react";
 import { useLaunch } from "@tarojs/taro";
+import { conversations } from "./constants/conversation";
+import { parseDialog } from "./utils/parseDialog";
+
 import "./app.scss";
-import { formatConversations } from "./constants/conversation";
+
+const formatConversations = conversations.map((c) => parseDialog(c));
 
 function App({ children }: PropsWithChildren<any>) {
 
