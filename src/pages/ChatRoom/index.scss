@@ -1,24 +1,27 @@
 .chat-room {
-  height: 100vh;
-  background-color: #424e5f;
+  padding: 8px;
+
+  .container {
+    padding-bottom: 120px;
+  }
 }
 
 .footer-input {
-  padding: 16px;
-  background-color: #515c6c;
+  background-color: white;
   display: flex;
   justify-content: space-between;
-  width: 100vw;
+  align-items: center;
+  width: 100%;
+  padding: 16 24px;
   padding-bottom: 64px;
   position: fixed;
   bottom: 0;
 
   .input {
-    flex: 1;
-    height: 72px;
-    margin-right: 36px;
-    border: 1px solid #fff;
-    color: #fff;
+    border-radius: 8px;
+    width: 75%;
+    height: 68px;
+    border: 1px solid gray;
   }
 
   .button {

@@ -14,7 +14,7 @@ export default function Message({ type, avatar, name, contents }) {
       <View className="container">
         <View className="name">{name}</View>
         <View className="message-list">
-          {contents.map(c => <MessageItem value={c.content} key={c.content} type={c.type} />)}
+          {contents.map(c => <MessageItem value={c.content} key={c.content} type={c.type} dialogType={type} />)}
         </View>
       </View>
     </View>

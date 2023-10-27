@@ -33,8 +33,10 @@ const getChat = async (message: string) => {
 
 export default function ChatRoom() {
   const [currentMessageList, setCurrentMessageList] = useState<any>([]);
+  const [currentMessageIndex, setCurrentMessageIndex] = useState<number>(0);
   const [curText, setCurText] = useState('')
-
+  const [isInputCompleted, setIsInputCompleted] = useState(false)
+  const [isBreak, setIsBreak] = useState(false)
   useLoad(() => {
     console.log("Page loaded.");
     const params = Taro.getCurrentInstance()?.router?.params;
@@ -48,9 +50,24 @@ export default function ChatRoom() {
     } else {
       setCurrentMessageList([]);
     }
-
-    getChat("你是谁？你在哪？你可以做什么？");
+    setCurrentMessageIndex(0)
   });
+  const func = () => {
+    setTimeout(() => {
+      let cur = currentMessageIndex + 1
+      if (Object.values(messageListMorning[cur]).length) {
+        setCurrentMessageList(currentMessageList.concat([messageListMorning[cur]]))
+        setCurrentMessageIndex(cur)
+        setCurText('')
+        setIsInputCompleted(false)
+        setIsBreak(false)
+      } else {
+        setCurrentMessageIndex(cur + 1)
+        setIsInputCompleted(false)
+        setIsBreak(true)
+      }
+    }, 200)
+  }
 
   return (
     <View className="chat-room">
@@ -68,16 +85,32 @@ export default function ChatRoom() {
       <View className="footer-input">
         <Input
           className="input"
+          value={curText}
           onInput={(e) => {
-          console.log(e)
-          setCurText(e.target?.detail ?? '')
-        }}
+            setCurText(e.detail?.value ?? '')
+          }}
         />
         <Button className='button' onClick={() => {
-          setCurrentMessageList(currentMessageList.concat([{ type: DialogType.BusinessGroup, content: {
-            type: 'text',
-            children:curText,
-          }}]))
+          if (!curText) {
+            return
+          }
+          setCurrentMessageList(currentMessageList.concat([{
+            name: "商家",
+            type: DialogType.BusinessGroup,
+            time: "2023-10-26 09:00:00",
+            avatar:
+              "https://media.kezaihui.com/campaign_pics/078fc7fa2c224c158ea5f1d1f8ae5c52.jpeg",
+            contents: [
+              {
+                type: 'text',
+                content: curText,
+              },
+            ],
+          }]))
+          setTimeout(() => {
+            setIsInputCompleted(false)
+          }, 200)
+          setIsInputCompleted(true)
         }}
         >发送</Button>
       </View>

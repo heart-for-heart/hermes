@@ -2,6 +2,7 @@ import { View, Image, Text, Video } from '@tarojs/components'
 
 import React, { FC, useEffect } from 'react'
 import TextTyper from '../TextTyper'
+import { DialogType } from '@/constants/conversation'
 
 import './index.scss'
 
@@ -34,12 +35,12 @@ const LinkCard = () => {
   )
 }
 
- const MessageItem: FC<any> = ({ type, value, src }) => {
+ const MessageItem: FC<any> = ({ type, value, src, dialogType }) => {
   return (
     <View className='message-item'>
       { type === 'text' &&
         <View className='text'>
-          <TextTyper value={value} />
+          {dialogType === DialogType.BusinessGroup ? <Text>{value}</Text> : <TextTyper value={value} />}
         </View>}
       { type === 'image' && <Image className='image' mode='widthFix' src={src} />}
       { type === 'video' && <Video className='video' src={src} />}

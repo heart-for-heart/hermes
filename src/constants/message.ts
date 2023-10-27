@@ -17,6 +17,7 @@ export const messageListMorning = [
     name: "助手",
     type: DialogType.Generator,
     time: "2023-10-26 09:00:00",
+    isBreak: true,
     avatar:
       "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
     contents: [
@@ -30,21 +31,8 @@ export const messageListMorning = [
   {
     name: "助手",
     type: DialogType.Generator,
-    time: "2023-10-26 09:00:00",
-    avatar:
-      "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
-    contents: [
-      {
-        type: ContentType.Emo,
-        content:
-          "下午好呀，我是小蜜，很高兴认识您！今天是 2023年10月27日，天气晴朗，是我们认识的第一天。",
-      },
-    ],
-  },
-  {
-    name: "助手",
-    type: DialogType.Generator,
     time: "2023-10-26 09:00:10",
+    isBreak: false,
     avatar:
       "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
     contents: [
@@ -70,6 +58,7 @@ export const messageListMorning = [
     name: "助手",
     type: DialogType.Generator,
     time: "2023-10-26 09:00:50",
+    isBreak: false,
     avatar:
       "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
     contents: [
