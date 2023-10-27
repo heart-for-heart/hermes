@@ -12,7 +12,7 @@
     margin-top: 120px;
     width: 690px;
     height: 230px;
-    padding: 64px 50px;
+    padding: 64px 30px;
     box-sizing: border-box;
     border-radius: 8px;
     border: 16px solid #f86c2a;
@@ -46,7 +46,6 @@
       border-right: 1px solid transparent;
     }
 
-    // TODO：第二行和第三行默认显示，打字符每排打好后不消失
     .second-line {
       flex-shrink: 0;
       font-size: 30px;
