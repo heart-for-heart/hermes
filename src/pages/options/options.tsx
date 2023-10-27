@@ -78,6 +78,10 @@ export default function Option() {
       key: 'option',
       data: optionsJSON,
     })
+    
+    Taro.navigateTo({
+      url: '/pages/ChatRoom/index'
+    })
   }
 
   return (
