@@ -1,7 +1,8 @@
 import { Text } from "@tarojs/components";
+import Taro from "@tarojs/taro";
 import { useEffect, useState } from "react";
 
-const TextTyper = ({ value }) => {
+const TextTyper = ({ value, onTyperComplete }) => {
   const [text, setText] = useState("");
 
   function typeWriter(t, speed, callback) {
@@ -15,6 +16,7 @@ const TextTyper = ({ value }) => {
         }
         textIndex++;
       } else {
+        onTyperComplete && onTyperComplete(true)
         clearInterval(interval); // 停止定时器
       }
     }, speed);
@@ -22,7 +24,7 @@ const TextTyper = ({ value }) => {
 
   useEffect(() => {
     if (value) {
-      typeWriter(value, 100, (currentText) => {
+      typeWriter(value, 50, (currentText) => {
         setText(currentText);
       });
     }

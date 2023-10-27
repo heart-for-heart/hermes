@@ -1,3 +1,5 @@
+import { GifSources } from "./gifs";
+
 export enum DialogType {
   BusinessGroup = "businessGroup",
   Generator = "generator",
@@ -17,7 +19,7 @@ export const messageListMorning = [
     name: "助手",
     type: DialogType.Generator,
     time: "2023-10-26 09:00:00",
-    isBreak: true,
+    isTyperComplete: false,
     avatar:
       "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
     contents: [
@@ -31,8 +33,26 @@ export const messageListMorning = [
   {
     name: "助手",
     type: DialogType.Generator,
+    time: "2023-10-26 09:05:00",
+    isTyperComplete: false,
+    avatar:
+      "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
+    contents: [
+      {
+        type: ContentType.Emo,
+        title: "",
+        subtitle: "",
+        src: 'https://r.kezaihui.com/client/2023-10-27/image/IMG_7633.GIF',
+        link: "https://crm.zaihuiba.com", //
+      },
+    ],
+  },
+  {},
+  {
+    name: "助手",
+    type: DialogType.Generator,
     time: "2023-10-26 09:00:10",
-    isBreak: false,
+    isTyperComplete: false,
     avatar:
       "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
     contents: [
@@ -58,7 +78,7 @@ export const messageListMorning = [
     name: "助手",
     type: DialogType.Generator,
     time: "2023-10-26 09:00:50",
-    isBreak: false,
+    isTyperComplete: false,
     avatar:
       "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
     contents: [
@@ -72,7 +92,26 @@ export const messageListMorning = [
   {
     name: "助手",
     type: DialogType.Generator,
+    time: "2023-10-26 09:05:00",
+    isTyperComplete: false,
+    avatar:
+      "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
+    contents: [
+      {
+        type: ContentType.Emo,
+        title: "",
+        subtitle: "",
+        src: 'https://r.kezaihui.com/client/2023-10-27/image/IMG_7632.GIF',
+        link: "https://crm.zaihuiba.com", //
+      },
+    ],
+  },
+  {},
+  {
+    name: "助手",
+    type: DialogType.Generator,
     time: "2023-10-26 09:02:00",
+    isTyperComplete: false,
     avatar:
       "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
     contents: [
@@ -98,13 +137,14 @@ export const messageListMorning = [
     name: "助手",
     type: DialogType.Generator,
     time: "2023-10-26 09:03:00",
+    isTyperComplete: false,
     avatar:
       "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
     contents: [
       {
         type: ContentType.Text,
         content:
-          "是的呢，直播是给门店引流的好帮手，但是做之前呢，还是要做好门店接待的准备，给顾客留下好印象，顾客才会再次到店呢。",
+          "直播是给门店引流的好帮手，但是做之前呢，还是要做好门店接待的准备，给顾客留下好印象，顾客才会再次到店呢。",
       },
     ],
   },
@@ -124,6 +164,7 @@ export const messageListMorning = [
     name: "助手",
     type: DialogType.Generator,
     time: "2023-10-26 09:05:00",
+    isTyperComplete: false,
     avatar:
       "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
     contents: [
@@ -137,15 +178,53 @@ export const messageListMorning = [
     name: "助手",
     type: DialogType.Generator,
     time: "2023-10-26 09:05:00",
+    isTyperComplete: false,
+    avatar:
+      "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
+    contents: [
+      {
+        type: ContentType.Image,
+        title: "",
+        subtitle: "",
+        src: "https://img.ypll.xyz/work/20231027000515.png",
+        link: "https://crm.zaihuiba.com", //
+      },
+    ],
+  },
+  {},
+  {
+    name: "助手",
+    type: DialogType.Generator,
+    time: "2023-10-26 09:05:00",
+    isTyperComplete: false,
     avatar:
       "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
     contents: [
       {
         type: ContentType.Text,
-        title: "",
-        subtitle: "",
-        image: "https://img.ypll.xyz/work/20231027000515.png",
-        link: "https://crm.zaihuiba.com", //
+        content: "快到元旦啦~，您的商户通很久没换啦，小秘为您准备了3套特色图哦，您喜欢哪套呢？",
+      },
+    ],
+  },
+  {
+    name: "助手",
+    type: DialogType.Generator,
+    time: "2023-10-26 09:05:00",
+    isTyperComplete: false,
+    avatar:
+      "https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png",
+    contents: [
+      {
+        type: ContentType.Image,
+        src: 'https://r.kezaihui.com/client/2023-10-27/image/img_v2_91017b9e-7cd2-4b3b-a66b-f2c109dc6f9g.jpg',
+      },
+      {
+        type: ContentType.Image,
+        src: 'https://r.kezaihui.com/client/2023-10-27/image/img_v2_6a474989-db03-4cd8-b90f-de257ca6193g.jpg',
+      },
+      {
+        type: ContentType.Image,
+        src: 'https://r.kezaihui.com/client/2023-10-27/image/img_v2_8806457d-5b59-4ff8-8558-c40791172d1g.png',
       },
     ],
   },
@@ -166,6 +245,7 @@ export const messageListMoon = [
       },
     ],
   },
+
   {
     // name: '商家',
     // type: DialogType.BusinessGroup,

@@ -5,16 +5,35 @@ import { DialogType } from "@/constants/conversation";
 
 import "./index.scss";
 
-export default function Message({ type, avatar, name, contents }) {
+export default function Message({
+  type,
+  avatar,
+  name,
+  contents,
+  onTyperComplete,
+}) {
   return (
-    <View className={`'message' ${type === DialogType.Generator ? "left" : "right"}`}>
+    <View
+      className={`'message' ${
+        type === DialogType.Generator ? "left" : "right"
+      }`}
+    >
       <View className="avatar-wrapper">
         <Image className="avatar" src={avatar} />
       </View>
       <View className="container">
         <View className="name">{name}</View>
         <View className="message-list">
-          {contents.map(c => <MessageItem value={c.content} key={c.content} type={c.type} dialogType={type} />)}
+          {contents.map((c) => (
+            <MessageItem
+              value={c.content}
+              key={c.content}
+              type={c.type}
+              src={c.src}
+              dialogType={type}
+              onTyperComplete={onTyperComplete}
+            />
+          ))}
         </View>
       </View>
     </View>

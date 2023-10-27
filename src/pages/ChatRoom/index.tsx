@@ -34,44 +34,59 @@ const getChat = async (message: string) => {
 export default function ChatRoom() {
   const [currentMessageList, setCurrentMessageList] = useState<any>([]);
   const [currentMessageIndex, setCurrentMessageIndex] = useState<number>(0);
-  const [curText, setCurText] = useState('')
-  const [isInputCompleted, setIsInputCompleted] = useState(false)
-  const [isBreak, setIsBreak] = useState(false)
+  const [curText, setCurText] = useState("");
+  const [isInputCompleted, setIsInputCompleted] = useState(false);
+  const [isBreak, setIsBreak] = useState(false);
+  const [isTyperComplete, setisTyperComplete] = useState(false)
+
   useLoad(() => {
     console.log("Page loaded.");
     const params = Taro.getCurrentInstance()?.router?.params;
     const type = params?.type;
-
     if (type === "morning") {
       setCurrentMessageList([messageListMorning[0]]);
-      console.log(messageListMorning)
+      console.log(messageListMorning);
     } else if (type === "afternoon") {
       setCurrentMessageList([messageListMorning[0]]);
     } else {
       setCurrentMessageList([]);
     }
-    setCurrentMessageIndex(0)
+    setCurrentMessageIndex(0);
   });
-  const func = () => {
-    setTimeout(() => {
-      let cur = currentMessageIndex + 1
-      if (Object.values(messageListMorning[cur]).length) {
-        setCurrentMessageList(currentMessageList.concat([messageListMorning[cur]]))
-        setCurrentMessageIndex(cur)
-        setCurText('')
-        setIsInputCompleted(false)
-        setIsBreak(false)
-      } else {
-        setCurrentMessageIndex(cur + 1)
-        setIsInputCompleted(false)
-        setIsBreak(true)
+
+  useEffect(() => {
+    if (isInputCompleted || !isBreak && isTyperComplete && !isInputCompleted) {
+      console.log('连续推送')
+      let cur = currentMessageIndex + 1;
+      if (currentMessageIndex > messageListMorning.length || !messageListMorning[cur]?.contents?.length) {
+        // 走gpt
+        return
       }
-    }, 200)
-  }
+      if (Object.values(messageListMorning[cur]).length) {
+        setCurrentMessageList(
+          currentMessageList.concat([messageListMorning[cur]])
+        );
+        setCurrentMessageIndex(cur);
+        setCurText("");
+        setIsInputCompleted(false);
+        if (cur + 1 < messageListMorning.length && !Object.values(messageListMorning?.[cur + 1]).length) {
+          setCurrentMessageIndex(cur + 1);
+          setIsBreak(true);
+          return
+        }
+        setIsBreak(false);
+      } else {
+        setIsBreak(true);
+        setIsInputCompleted(false);
+      }
+    }
+  }, [isBreak, isTyperComplete, currentMessageList, isInputCompleted]);
+
+  console.log(currentMessageIndex, isBreak, 'isBreak', 'isTyperComplete', isTyperComplete, 'isInputCompleted', isInputCompleted)
 
   return (
     <View className="chat-room">
-      <View className="container">
+      <View className="list-container">
         {currentMessageList.map((item, index) => (
           <Message
             key={index}
@@ -79,6 +94,18 @@ export default function ChatRoom() {
             avatar={item.avatar}
             name={item.name}
             contents={item.contents ?? []}
+            onTyperComplete={(v) => {
+              setCurrentMessageList(
+                currentMessageList.map((v) => {
+                  if (v.contents === item.contents) {
+                    v.isTyperComplete = true;
+                    return v
+                  }
+                  return v
+                })
+              );
+              setisTyperComplete(v)
+            }}
           />
         ))}
       </View>
@@ -87,32 +114,39 @@ export default function ChatRoom() {
           className="input"
           value={curText}
           onInput={(e) => {
-            setCurText(e.detail?.value ?? '')
+            setCurText(e.detail?.value ?? "");
           }}
         />
-        <Button className='button' onClick={() => {
-          if (!curText) {
-            return
-          }
-          setCurrentMessageList(currentMessageList.concat([{
-            name: "商家",
-            type: DialogType.BusinessGroup,
-            time: "2023-10-26 09:00:00",
-            avatar:
-              "https://media.kezaihui.com/campaign_pics/078fc7fa2c224c158ea5f1d1f8ae5c52.jpeg",
-            contents: [
-              {
-                type: 'text',
-                content: curText,
-              },
-            ],
-          }]))
-          setTimeout(() => {
-            setIsInputCompleted(false)
-          }, 200)
-          setIsInputCompleted(true)
-        }}
-        >发送</Button>
+        <Button
+          className="button"
+          onClick={() => {
+            if (!curText) {
+              return;
+            }
+            setCurrentMessageList(
+              currentMessageList.concat([
+                {
+                  name: "商家",
+                  type: DialogType.BusinessGroup,
+                  time: "2023-10-26 09:00:00",
+                  avatar:
+                    "https://media.kezaihui.com/campaign_pics/078fc7fa2c224c158ea5f1d1f8ae5c52.jpeg",
+                  contents: [
+                    {
+                      type: "text",
+                      content: curText,
+                    },
+                  ],
+                },
+              ])
+            );
+            setIsBreak(true);
+            setisTyperComplete(false)
+            setIsInputCompleted(true);
+          }}
+        >
+          发送
+        </Button>
       </View>
     </View>
   );

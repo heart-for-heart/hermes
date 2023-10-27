@@ -38,13 +38,33 @@ const Index: React.FC = () => {
         {showSecond && text[1] && <TextTyper value={text[1]} />}
         {showThird && text[2] && <TextTyper value={text[2]} />}
       </View>
-      <Button
-        type="primary"
-        className="begin-journey"
-        onClick={handleClickJourney}
-      >
-        开启旅程
-      </Button>
+      <View style={{ paddingTop: 100 }}>
+        <Button
+          type="primary"
+          className="begin-journey"
+          onClick={handleClickJourney}
+        >
+          开启旅程
+        </Button>
+        <Button
+          onClick={() => {
+            Taro.navigateTo({
+              url: "/pages/ChatRoom/index?type=morning",
+            });
+          }}
+        >
+          早上场景
+        </Button>
+        <Button
+          onClick={() => {
+            Taro.navigateTo({
+              url: "/pages/ChatRoom/index?type=afternoon",
+            });
+          }}
+        >
+          下午场景
+        </Button>
+      </View>
     </View>
   )
 }
