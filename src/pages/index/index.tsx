@@ -28,7 +28,7 @@ const Index: React.FC = () => {
   }, [])
 
   const handleClickJourney = () => {
-    Taro.navigateTo({ url: 'pages/options/options' })
+    Taro.navigateTo({ url: '/pages/options/options' })
   }
 
   return (
