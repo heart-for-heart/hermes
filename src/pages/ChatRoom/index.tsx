@@ -10,18 +10,13 @@ import { parseDialog } from "@/utils/parseDialog";
 
 import "./index.scss";
 
-const getChat = async (message: string) => {
+const getChat = async (message: string, option) => {
   const { data } = await Taro.request({
     url: "https://bomb.zaihuiba.com/chat/",
     method: "POST",
     data: {
+      ...option,
       message,
-      business: '凑凑火锅',
-      district: '长风大悦城',
-      category: '火锅',
-      style: '传统中式',
-      price: '200',
-      dishes: '',
     },
     header: {
       "Content-Type": "application/json",
@@ -38,6 +33,14 @@ export default function ChatRoom() {
   const [isInputCompleted, setIsInputCompleted] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
   const [isTyperComplete, setisTyperComplete] = useState(false)
+  const [option, setOption] = useState({
+    business: "凑凑火锅",
+    district: "长风大悦城",
+    category: "火锅",
+    style: "传统中式",
+    price: "200",
+    dishes: "",
+  });
 
   useLoad(() => {
     console.log("Page loaded.");
@@ -84,6 +87,18 @@ export default function ChatRoom() {
 
   console.log(currentMessageIndex, isBreak, 'isBreak', 'isTyperComplete', isTyperComplete, 'isInputCompleted', isInputCompleted)
 
+  useEffect(() => {
+    Taro.getStorage({
+      key: "option",
+      success: ({ data }) => {
+        const op = JSON.parse(data);
+        getChat("请给出关于火锅店的宣传文案", op).then((res) => {
+          console.log("chat-option", res);
+        });
+      },
+    });
+  }, []);
+
   return (
     <View className="chat-room">
       <View className="list-container">
@@ -114,35 +129,24 @@ export default function ChatRoom() {
           className="input"
           value={curText}
           onInput={(e) => {
-            setCurText(e.detail?.value ?? "");
+            console.log(e);
+            setCurText(e.target?.detail ?? "");
           }}
         />
         <Button
           className="button"
           onClick={() => {
-            if (!curText) {
-              return;
-            }
             setCurrentMessageList(
               currentMessageList.concat([
                 {
-                  name: "商家",
                   type: DialogType.BusinessGroup,
-                  time: "2023-10-26 09:00:00",
-                  avatar:
-                    "https://media.kezaihui.com/campaign_pics/078fc7fa2c224c158ea5f1d1f8ae5c52.jpeg",
-                  contents: [
-                    {
-                      type: "text",
-                      content: curText,
-                    },
-                  ],
+                  content: {
+                    type: "text",
+                    children: curText,
+                  },
                 },
               ])
             );
-            setIsBreak(true);
-            setisTyperComplete(false)
-            setIsInputCompleted(true);
           }}
         >
           发送

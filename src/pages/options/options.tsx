@@ -62,11 +62,11 @@ export default function Option() {
   const [style, setStyle] = useState<string>()
   const [price, setPrice] = useState<string>()
   const [dishes, setDishes] = useState<string>()
-  const [bussiness, setBussiness] = useState<string>('叨叨火锅')
+  const [business, setBusiness] = useState<string>('叨叨火锅')
 
   const handleNext = () => {
     const options = {
-      bussiness,
+      business,
       dishes,
       district,
       category,
@@ -93,7 +93,7 @@ export default function Option() {
 
       <HuiForm form={form}>
         <HuiFormItem
-          name='bussiness'
+          name='business'
           label='商户名称'
           rule={[
             { require: true }
@@ -101,11 +101,11 @@ export default function Option() {
         >
           <HuiInput
             placeholder='请输入商户名称'
-            value={bussiness}
+            value={business}
             style={{ width: 230, background: 'transparent' }}
             // eslint-disable-next-line
             // @ts-ignore
-            onInput={e => setBussiness(e.target.value)}
+            onInput={e => setBusiness(e.target.value)}
           />
         </HuiFormItem>
         <RadioItem
