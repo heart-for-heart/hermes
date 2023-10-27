@@ -1,6 +1,7 @@
 import { View, Image, Text, Video } from '@tarojs/components'
 
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
+import TextTyper from '../TextTyper'
 
 import './index.scss'
 
@@ -36,7 +37,10 @@ const LinkCard = () => {
  const MessageItem: FC<any> = ({ type, value, src }) => {
   return (
     <View className='message-item'>
-      { type === 'text' && <Text className='text'>{value}</Text>}
+      { type === 'text' &&
+        <View className='text'>
+          <TextTyper value={value} />
+        </View>}
       { type === 'image' && <Image className='image' mode='widthFix' src={src} />}
       { type === 'video' && <Video className='video' src={src} />}
       { type === 'link' && <LinkCard /> }

@@ -1,5 +1,6 @@
-import { View} from "@tarojs/components"
+import { View ,  Button} from "@tarojs/components"
 import React, { useEffect, useState } from "react"
+import Taro from "@tarojs/taro"
 
 import "./index.scss"
 
@@ -22,6 +23,26 @@ const Index: React.FC = () => {
           <View className="third-line">
             接下来由我代您开启一段餐饮门店经营之旅
           </View>
+          
+      <Button
+        onClick={() => {
+          Taro.navigateTo({
+            url: "/pages/ChatRoom/index?type=morning",
+          });
+        }}
+      >
+        早上场景
+      </Button>
+      <Button
+        onClick={() => {
+          Taro.navigateTo({
+            url: "/pages/ChatRoom/index?type=noon",
+          });
+        }}
+      >
+        中午场景
+      </Button>
+
         </View>
       </View>
     // </HuiLoader>
