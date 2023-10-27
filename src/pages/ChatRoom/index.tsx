@@ -23,7 +23,7 @@ const getChat = async (message: string, option) => {
     },
   });
 
-  console.log("message", data.message);
+  return data.message
 };
 
 export default function ChatRoom() {
@@ -32,7 +32,7 @@ export default function ChatRoom() {
   const [curText, setCurText] = useState("");
   const [isInputCompleted, setIsInputCompleted] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
-  const [isTyperComplete, setisTyperComplete] = useState(false)
+  const [isTyperComplete, setisTyperComplete] = useState(false);
   const [option, setOption] = useState({
     business: "凑凑火锅",
     district: "长风大悦城",
@@ -46,16 +46,52 @@ export default function ChatRoom() {
     setTimeout(() => {
       setCurrentMessageList([messageListMorning[0]]);
       setCurrentMessageIndex(0);
-    }, 500)
-
+    }, 500);
   });
 
   useEffect(() => {
-    if (isInputCompleted || !isBreak && isTyperComplete && !isInputCompleted) {
-      console.log('连续推送')
+    if (
+      isInputCompleted ||
+      (!isBreak && isTyperComplete && !isInputCompleted)
+    ) {
+      console.log("连续推送");
       let cur = currentMessageIndex + 1;
-      if (currentMessageIndex > messageListMorning.length || !messageListMorning[cur]?.contents?.length) {
+      if (
+        currentMessageIndex > messageListMorning.length ||
+        !messageListMorning[cur]?.contents?.length
+      ) {
         // 走gpt
+        Taro.getStorage({
+          key: "option",
+          success: ({ data }) => {
+            const op = JSON.parse(data);
+            getChat(curText, op).then((res) => {
+              console.log("chat-option", res);
+              if (res) {
+                setCurrentMessageList(
+                  currentMessageList.concat([
+                    {
+                      name: "助手",
+                      type: DialogType.Generator,
+                      time: "2023-10-26 09:00:00",
+                      avatar: 'https://r.kezaihui.com/client/image/2023-05-19/ai-xiaohui-logo.png',
+                      contents: [
+                        {
+                          type: "text",
+                          content: res,
+                        },
+                      ],
+                    },
+                  ])
+                );
+              }
+    
+            });
+          },
+        });
+        setCurText("");
+        setIsInputCompleted(false);
+        setIsBreak(true);
         return
       }
       if (Object.values(messageListMorning[cur]).length) {
@@ -65,10 +101,13 @@ export default function ChatRoom() {
         setCurrentMessageIndex(cur);
         setCurText("");
         setIsInputCompleted(false);
-        if (cur + 1 < messageListMorning.length && !Object.values(messageListMorning?.[cur + 1]).length) {
+        if (
+          cur + 1 < messageListMorning.length &&
+          !Object.values(messageListMorning?.[cur + 1]).length
+        ) {
           setCurrentMessageIndex(cur + 1);
           setIsBreak(true);
-          return
+          return;
         }
         setIsBreak(false);
       } else {
@@ -78,19 +117,15 @@ export default function ChatRoom() {
     }
   }, [isBreak, isTyperComplete, currentMessageList, isInputCompleted]);
 
-  console.log(currentMessageIndex, isBreak, 'isBreak', 'isTyperComplete', isTyperComplete, 'isInputCompleted', isInputCompleted)
-
-  useEffect(() => {
-    Taro.getStorage({
-      key: "option",
-      success: ({ data }) => {
-        const op = JSON.parse(data);
-        getChat("请给出关于火锅店的宣传文案", op).then((res) => {
-          console.log("chat-option", res);
-        });
-      },
-    });
-  }, []);
+  console.log(
+    currentMessageIndex,
+    isBreak,
+    "isBreak",
+    "isTyperComplete",
+    isTyperComplete,
+    "isInputCompleted",
+    isInputCompleted
+  );
 
   return (
     <View className="chat-room">
@@ -107,12 +142,12 @@ export default function ChatRoom() {
                 currentMessageList.map((v) => {
                   if (v.contents === item.contents) {
                     v.isTyperComplete = true;
-                    return v
+                    return v;
                   }
-                  return v
+                  return v;
                 })
               );
-              setisTyperComplete(v)
+              setisTyperComplete(v);
             }}
           />
         ))}
@@ -123,23 +158,35 @@ export default function ChatRoom() {
           value={curText}
           onInput={(e) => {
             console.log(e);
-            setCurText(e.target?.detail ?? "");
+            setCurText(e.detail?.value ?? "");
           }}
         />
         <Button
           className="button"
           onClick={() => {
+            if (!curText) {
+              return;
+            }
             setCurrentMessageList(
               currentMessageList.concat([
                 {
+                  name: "商家",
                   type: DialogType.BusinessGroup,
-                  content: {
-                    type: "text",
-                    children: curText,
-                  },
+                  time: "2023-10-26 09:00:00",
+                  avatar:
+                    "https://media.kezaihui.com/campaign_pics/078fc7fa2c224c158ea5f1d1f8ae5c52.jpeg",
+                  contents: [
+                    {
+                      type: "text",
+                      content: curText,
+                    },
+                  ],
                 },
               ])
             );
+            setIsBreak(true);
+            setisTyperComplete(false);
+            setIsInputCompleted(true);
           }}
         >
           发送
