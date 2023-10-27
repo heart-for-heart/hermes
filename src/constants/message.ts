@@ -170,7 +170,7 @@ export const messageListMorning = [
     contents: [
       {
         type: ContentType.Text,
-        content: "这个发给您，是本周的餐饮动态哦～很有趣的，您一定要看",
+        content: "如果想要了解直播，可以联系我们呢。\n 这个发给您，是本周的餐饮动态哦～很有趣的，您一定要看",
       },
     ],
   },

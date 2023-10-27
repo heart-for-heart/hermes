@@ -38,6 +38,13 @@ const Index: React.FC = () => {
         {showSecond && text[1] && <TextTyper value={text[1]} />}
         {showThird && text[2] && <TextTyper value={text[2]} />}
       </View>
+      <Button
+        type="primary"
+        className="begin-journey"
+        onClick={handleClickJourney}
+      >
+        开启旅程
+      </Button>
       <View style={{ paddingTop: 100 }}>
         <Button
           type="primary"

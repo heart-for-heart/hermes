@@ -43,18 +43,11 @@ export default function ChatRoom() {
   });
 
   useLoad(() => {
-    console.log("Page loaded.");
-    const params = Taro.getCurrentInstance()?.router?.params;
-    const type = params?.type;
-    if (type === "morning") {
+    setTimeout(() => {
       setCurrentMessageList([messageListMorning[0]]);
-      console.log(messageListMorning);
-    } else if (type === "afternoon") {
-      setCurrentMessageList([messageListMorning[0]]);
-    } else {
-      setCurrentMessageList([]);
-    }
-    setCurrentMessageIndex(0);
+      setCurrentMessageIndex(0);
+    }, 500)
+
   });
 
   useEffect(() => {
