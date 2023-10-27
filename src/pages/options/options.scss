@@ -1,0 +1,92 @@
+.option {
+  height: 100vw;
+  min-height: 1500px;
+  overflow: hidden;
+  padding: 24px;
+  padding-top: 80px;
+  background: linear-gradient(180deg, #4E5C6E 0%, #324155 100%);
+
+  .option-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+
+    .hui-image {
+      background-color: transparent;
+    }
+
+    .avatar-img {
+      width: 128px;
+      height: 128px;
+      border-radius: 100%;
+      margin-left: 40px;
+    }
+
+    .avatar-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('https://r.kezaihui.com/client/2023-10-27/image/20231027-105302.png');
+      color: white;
+      font-size: 28px;
+      font-weight: 500;
+      width: 510px;
+      height: 130px;
+      background-size: cover;
+    }
+  }
+
+  .radio-form-item {
+    .hui-form-item-content {
+      margin-top: -24px;
+    }
+  }
+
+  .input-wrapper {
+    color: white;
+  }
+
+  .input-content {
+    padding: 4px;
+  }
+
+  .hui-form-item {
+    background-color: transparent;
+    margin-bottom: 24px;
+
+    .hui-form-item-wrapper {
+      border-bottom: unset;
+
+      .hui-form-item-text {
+        max-width: unset;
+        width: 120px;
+        color: white;
+      }
+
+      .hui-form-item-content {
+        width: unset;
+        text-align: unset;
+        color: white
+      }
+
+      .hui-radio {
+        margin: 12px;
+
+        .hui-radio-icon {
+          border: 1px solid white;
+        }
+      }
+    }
+  }
+
+  .next-page {
+    position: relative;
+    padding-top: 40px;
+
+    button {
+      position: absolute;
+      right: 40px;
+    }
+  }
+}

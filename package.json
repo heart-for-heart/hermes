@@ -51,6 +51,7 @@
     "@tarojs/runtime": "3.6.18",
     "@tarojs/shared": "3.6.18",
     "@tarojs/taro": "3.6.18",
+    "dayjs": "^1.11.10",
     "hui-design": "0.0.1-beta.45",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
