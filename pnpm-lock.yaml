@@ -29,6 +29,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^6.2.0
   '@typescript-eslint/parser': ^6.2.0
   babel-preset-taro: 3.6.18
+  dayjs: ^1.11.10
   eslint: ^8.12.0
   eslint-config-taro: 3.6.18
   eslint-plugin-import: ^2.12.0
@@ -64,6 +65,7 @@ dependencies:
   '@tarojs/runtime': 3.6.18
   '@tarojs/shared': 3.6.18
   '@tarojs/taro': 3.6.18_rkctfreasgy6l4oxxaunfo473e
+  dayjs: 1.11.10
   hui-design: 0.0.1-beta.45_ll64jjs7f4oatyccyxgq7nhcvm
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -5334,6 +5336,10 @@ packages:
       whatwg-mimetype: 3.0.0
       whatwg-url: 12.0.1
     dev: true
+
+  /dayjs/1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}

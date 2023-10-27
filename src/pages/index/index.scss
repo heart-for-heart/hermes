@@ -12,11 +12,14 @@
     margin-top: 120px;
     width: 690px;
     height: 230px;
-    padding: 64px 30px;
+    padding: 60px 70px 20px;
+    font-size: 30px;
     box-sizing: border-box;
     border-radius: 8px;
-    border: 16px solid #f86c2a;
-    background-color: #fff;
+    color: #f86c2a;
+    background: url("https://r.kezaihui.com/client/2023-10-26/image/dialog-box2.png")
+      no-repeat;
+    background-size: 100% 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -65,5 +68,14 @@
       animation: typing 6.5s steps(19) 7.5s, caret 0.5s steps(1) 7.5s infinite;
       border-right: 1px solid transparent;
     }
+  }
+
+  .begin-journey {
+    background: #f86c2a;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-weight: 500;
+    padding-bottom: 34px;
   }
 }

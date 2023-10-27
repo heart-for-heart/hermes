@@ -1,9 +1,10 @@
-import { View } from "@tarojs/components"
+import { Button, View } from "@tarojs/components"
 import React, { useEffect, useState } from "react"
 
 import TextTyper from "@/components/TextTyper"
 
 import "./index.scss"
+import Taro from "@tarojs/taro"
 
 const Index: React.FC = () => {
   const [showFirst, setShowFirst] = useState(true)
@@ -26,6 +27,10 @@ const Index: React.FC = () => {
     }, 2500)
   }, [])
 
+  const handleClickJourney = () => {
+    Taro.navigateTo({ url: 'pages/options/options' })
+  }
+
   return (
     <View className="index-page">
       <View className="dialog-box">
@@ -33,6 +38,13 @@ const Index: React.FC = () => {
         {showSecond && text[1] && <TextTyper value={text[1]} />}
         {showThird && text[2] && <TextTyper value={text[2]} />}
       </View>
+      <Button
+        type="primary"
+        className="begin-journey"
+        onClick={handleClickJourney}
+      >
+        开启旅程
+      </Button>
     </View>
   )
 }
