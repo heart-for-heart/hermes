@@ -1,3 +1,27 @@
 .chat-room {
   padding: 8px;
 }
+
+.footer-input {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16 24px;
+  padding-bottom: 64px;
+  position: fixed;
+  bottom: 0;
+
+  .input {
+    height: 72px;
+    border: 1px solid black;
+  }
+
+  .button {
+    height: 72px;
+    width: 150px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

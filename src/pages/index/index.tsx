@@ -23,7 +23,8 @@ const Index: React.FC = () => {
           <View className="third-line">
             接下来由我代您开启一段餐饮门店经营之旅
           </View>
-          
+        </View>
+        <View style={{ paddingTop: 100 }}>
       <Button
         onClick={() => {
           Taro.navigateTo({
@@ -36,14 +37,13 @@ const Index: React.FC = () => {
       <Button
         onClick={() => {
           Taro.navigateTo({
-            url: "/pages/ChatRoom/index?type=noon",
+            url: "/pages/ChatRoom/index?type=afternoon",
           });
         }}
       >
-        中午场景
+        下午场景
       </Button>
-
-        </View>
+      </View>
       </View>
     // </HuiLoader>
   )

@@ -44,6 +44,7 @@ const LinkCard = () => {
       { type === 'image' && <Image className='image' mode='widthFix' src={src} />}
       { type === 'video' && <Video className='video' src={src} />}
       { type === 'link' && <LinkCard /> }
+      { type === 'emo' && <Image className='emo' mode='widthFix' src={src} /> }
     </View>
   )
 
