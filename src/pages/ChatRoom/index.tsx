@@ -10,19 +10,33 @@ import { parseDialog } from "@/utils/parseDialog";
 
 import "./index.scss";
 
-const formatConversations = conversations.map((c) => parseDialog(c));
+const getChat = async (message: string) => {
+  const { data } = await Taro.request({
+    url: "https://bomb.zaihuiba.com/chat/",
+    method: "POST",
+    data: {
+      message,
+      business: '凑凑火锅',
+      district: '长风大悦城',
+      category: '火锅',
+      style: '传统中式',
+      price: '200',
+      dishes: '',
+    },
+    header: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  console.log("message", data.message);
+};
+
 export default function ChatRoom() {
   const [currentMessageList, setCurrentMessageList] = useState<any>([]);
   const [curText, setCurText] = useState('')
 
   useLoad(() => {
     console.log("Page loaded.");
-
-    // const messageList = Taro.getStorageSync('message_list')
-    // if (!messageList) {
-    //   Taro.setStorageSync('message_list', JSON.stringify([]))
-    // }
-
     const params = Taro.getCurrentInstance()?.router?.params;
     const type = params?.type;
 
@@ -34,19 +48,9 @@ export default function ChatRoom() {
     } else {
       setCurrentMessageList([]);
     }
+
+    getChat("你是谁？你在哪？你可以做什么？");
   });
-
-  // useEffect(() => {
-  //   const messageList = Taro.getStorageSync('message_list')
-  //   if (messageList) {
-  //     setCurrentMessageList(messageList)
-  //   }
-
-  //   // 隔几秒主动询问
-  //   setTimeout(() => {
-
-  //   }, 1000);
-  // }, [])
 
   return (
     <View className="chat-room">

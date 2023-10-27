@@ -1,0 +1,70 @@
+.index-page {
+  height: 100vh;
+  width: 100%;
+  background: url("https://r.kezaihui.com/client/2023-10-26/image/ai-background.jpeg")
+    no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .dialog-box {
+    margin-top: 120px;
+    width: 690px;
+    height: 230px;
+    padding: 64px 50px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 16px solid #f86c2a;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    overflow: hidden;
+    white-space: nowrap;
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+    }
+
+    @keyframes caret {
+      50% {
+        border-right-color: #000;
+      }
+    }
+
+    .first-line {
+      flex-shrink: 0;
+      font-size: 30px;
+      width: 360px;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 5s steps(12), caret 0.5s steps(1) infinite;
+      border-right: 1px solid transparent;
+    }
+
+    // TODO：第二行和第三行默认显示，打字符每排打好后不消失
+    .second-line {
+      flex-shrink: 0;
+      font-size: 30px;
+      width: 210px;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 2.5s steps(7) 5s, caret 0.5s steps(1) 5s infinite;
+      border-right: 1px solid transparent;
+    }
+
+    .third-line {
+      flex-shrink: 0;
+      font-size: 30px;
+      width: 570px;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 6.5s steps(19) 7.5s, caret 0.5s steps(1) 7.5s infinite;
+      border-right: 1px solid transparent;
+    }
+  }
+}

@@ -3,6 +3,7 @@ export default defineAppConfig({
     'pages/index/index',
     'pages/ChatRoom/index',
     'pages/options/options',
+    'pages/LinkPage/index',
   ],
   window: {
     backgroundTextStyle: 'light',
