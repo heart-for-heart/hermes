@@ -45,33 +45,6 @@ const Index: React.FC = () => {
       >
         开启旅程
       </Button>
-      <View style={{ paddingTop: 100 }}>
-        <Button
-          type="primary"
-          className="begin-journey"
-          onClick={handleClickJourney}
-        >
-          开启旅程
-        </Button>
-        <Button
-          onClick={() => {
-            Taro.navigateTo({
-              url: "/pages/ChatRoom/index?type=morning",
-            });
-          }}
-        >
-          早上场景
-        </Button>
-        <Button
-          onClick={() => {
-            Taro.navigateTo({
-              url: "/pages/ChatRoom/index?type=afternoon",
-            });
-          }}
-        >
-          下午场景
-        </Button>
-      </View>
     </View>
   )
 }

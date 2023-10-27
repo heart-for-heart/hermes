@@ -1,8 +1,7 @@
 .chat-room {
-  padding: 8px;
-
   .list-container {
-    padding-bottom: 120px;
+    height: 100vh;
+    padding-bottom: 150px;
   }
 }
 
@@ -20,6 +19,7 @@
   bottom: 0;
 
   .input {
+    color: #fff;
     border-radius: 8px;
     width: 75%;
     height: 68px;
